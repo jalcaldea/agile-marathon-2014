@@ -15,8 +15,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class Shop extends Activity
@@ -31,6 +34,9 @@ public class Shop extends Activity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+    private ListView mListView;
+    private String[] categorias = {"Imagen y sonido", "Pequeños electrodomésticos", "Informatica", "Fotografía y Revelado","Telefonía","Juegos y Consolas","Electrodomésticos"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +51,23 @@ public class Shop extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+
+        mListView = (ListView) findViewById(R.id.product_label);
+        mListView.setAdapter(new ArrayAdapter<String>(getActionBar().getThemedContext(),
+                android.R.layout.simple_list_item_1, categorias));
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> pariente, View view, int posicion, long id) {
+                String elegido = (String) pariente.getItemAtPosition(posicion);
+
+                CharSequence texto = "Seleccionado: " + elegido;
+                Toast toast = Toast.makeText(Shop.this, texto, Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
+
     }
 
     @Override
