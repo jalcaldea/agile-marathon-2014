@@ -60,6 +60,7 @@ public class Shop extends Activity
         switch (number) {
             case 1:
                 mTitle = getString(R.string.imagen);
+
                 break;
             case 2:
                 mTitle = getString(R.string.peque_elect);
