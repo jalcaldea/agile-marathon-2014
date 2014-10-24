@@ -2,9 +2,16 @@
 <resources>
 
     <string name="app_name">Worten</string>
-    <string name="title_section1">Pepe</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="imagen">Imagen y Sonido </string>
+    <string name="peque_elect">Pequeños electrodomésticos</string>
+    <string name="informatica">Informática</string>
+    <string name="fotografia">Fotografía y Revelado</string>
+    <string name="telefonia">Telefonía</string>
+    <string name="juegos">Juegos y consolas</string>
+    <string name="elect">Electrodomésticos</string>
+
+
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
