@@ -33,4 +33,8 @@
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Example</item>
     </style>
 
+    <style name="ButtonStyle" parent="android:Theme.Light">
+        <item name="android:background">@color/red</item>
+    </style>
+
 </resources>
