@@ -29,6 +29,7 @@ public class Games extends Activity
 
     private boolean cambio = false;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +43,7 @@ public class Games extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout),2);
+
 
     /*
         mListView = (ListView) findViewById(R.id.product_label);
@@ -90,7 +92,7 @@ public class Games extends Activity
                     break;
                 case 4:
                     mainIntent = new Intent().setClass(
-                            Games.this, User.class);
+                            Games.this, Login.class);
                     startActivity(mainIntent);
                     break;
             }}else{

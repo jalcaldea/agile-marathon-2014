@@ -13,15 +13,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import worten.aebd.com.worten.products.Producto;
-import worten.aebd.com.worten.products.Productos;
 
-
-public class Product extends Activity
+public class Login extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -34,37 +29,43 @@ public class Product extends Activity
      */
     private CharSequence mTitle;
 
-    private Producto producto;
+    private boolean login;
 
-    private TextView nombre;
-    private TextView desc;
-    private ImageView imagen;
-    private Button juego;
-    private Button buy;
-    private Button follow;
-    private Button opinion;
+    private Button enter;
 
     private boolean cambio = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product);
+        setContentView(R.layout.activity_login);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
-
         mTitle = getTitle();
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout),5);
+                (DrawerLayout) findViewById(R.id.drawer_layout),3);
 
-        Bundle bundle = getIntent().getExtras();
-        int n = bundle.getInt("producto");
-        producto = new Productos().getLista().get(n);
+        enter = (Button) findViewById(R.id.entrar);
 
+        enter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CharSequence texto = "Has añadido iniciado sesión correctamente.";
+                Toast toast = Toast.makeText(Login.this, texto, Toast.LENGTH_LONG);
+                toast.show();
+                Intent mainIntent = new Intent();
+                mainIntent = new Intent().setClass(
+                        Login.this, Shop.class);
+                mainIntent.putExtra("login",true);
+                startActivity(mainIntent);
+                finish();
+
+            }
+        });
 
     /*
         mListView = (ListView) findViewById(R.id.product_label);
@@ -83,27 +84,7 @@ public class Product extends Activity
         });*/
 
         
-        nombre = (TextView) findViewById(R.id.nombre);
-        nombre.setText((CharSequence) producto.get_Nombre());
-
-        desc = (TextView) findViewById(R.id.desc);
-        desc.setText((CharSequence) producto.getDesc());
-
-       imagen = (ImageView) findViewById(R.id.imageView);
-        if (imagen != null)
-            imagen.setImageResource(producto.get_idImagen());
-
-        follow = (Button) findViewById(R.id.button4);
-
-        follow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CharSequence texto = "Has añadido "+producto.get_Nombre()+" a tu lista de seguidos.";
-                Toast toast = Toast.makeText(Product.this, texto, Toast.LENGTH_LONG);
-                toast.show();
-            }
-        });
-
+        
 
     }
 
@@ -120,29 +101,47 @@ public class Product extends Activity
     public void onSectionAttached(int number) {
         if(cambio){
             Intent mainIntent = new Intent();
+        if(login){
+        switch (number) {
+            case 1:
+                mainIntent = new Intent().setClass(
+                        Login.this, Shop.class);
+                startActivity(mainIntent);
+                break;
+            case 2:
+                mainIntent = new Intent().setClass(
+                        Login.this, Scaner.class);
+                startActivity(mainIntent);
+                break;
+            case 3:
+                mainIntent = new Intent().setClass(
+                        Login.this, Games.class);
+                startActivity(mainIntent);
+                break;
+        }}else{
+            CharSequence texto = "Necesitas iniciar sesión para eso.";
             switch (number) {
                 case 1:
                     mainIntent = new Intent().setClass(
-                            Product.this, Shop.class);
+                            Login.this, Shop.class);
                     startActivity(mainIntent);
                     break;
                 case 2:
-                    mainIntent = new Intent().setClass(
-                            Product.this, Scaner.class);
-                    startActivity(mainIntent);
+
+                    Toast toast = Toast.makeText(Login.this, texto, Toast.LENGTH_LONG);
+                    toast.show();
                     break;
                 case 3:
-                    mainIntent = new Intent().setClass(
-                            Product.this, Games.class);
-                    startActivity(mainIntent);
+                    Toast toast2 = Toast.makeText(Login.this, texto, Toast.LENGTH_LONG);
+                    toast2.show();
                     break;
                 case 4:
-                    mainIntent = new Intent().setClass(
-                            Product.this, Login.class);
-                    startActivity(mainIntent);
+                    Toast toast3 = Toast.makeText(Login.this, texto, Toast.LENGTH_LONG);
+                    toast3.show();
                     break;
-                default:break;
-            }}else{
+            }
+        }
+        }else{
             cambio = true;
         }
     }
@@ -215,7 +214,7 @@ public class Product extends Activity
         @Override
         public void onAttach(Activity activity) {
             super.onAttach(activity);
-            ((Product) activity).onSectionAttached(
+            ((Login) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }

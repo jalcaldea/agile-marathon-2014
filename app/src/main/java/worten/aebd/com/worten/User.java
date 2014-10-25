@@ -27,6 +27,7 @@ public class User extends Activity
      */
     private CharSequence mTitle;
 
+
     private boolean cambio = false;
 
     @Override
@@ -41,7 +42,7 @@ public class User extends Activity
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout),3);
+                (DrawerLayout) findViewById(R.id.drawer_layout),1);
 
     /*
         mListView = (ListView) findViewById(R.id.product_label);

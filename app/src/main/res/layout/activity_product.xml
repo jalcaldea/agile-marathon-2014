@@ -13,76 +13,82 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/nombre"
-            android:layout_gravity="center" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView"
-            android:layout_gravity="center" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/desc"
-            android:layout_gravity="center" />
-
-        <GridLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_gravity="top|center"
-            android:columnCount="4"
-            android:rowCount="4"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="100dp">
+            android:layout_height="fill_parent">
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Opiniones"
-                android:id="@+id/button"
-                android:layout_row="1"
-                android:layout_column="1" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:id="@+id/nombre"
+                android:layout_gravity="center" />
 
-            <Button
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Añadir al carro"
-                android:id="@+id/button2"
-                android:layout_gravity="right"
-                android:layout_row="2"
-                android:layout_column="1" />
+                android:id="@+id/imageView"
+                android:layout_gravity="center" />
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Juega"
-                android:id="@+id/button3"
-                android:layout_row="1"
-                android:layout_column="2" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/desc"
+                android:layout_gravity="center" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Follow"
-                android:id="@+id/button4"
-                android:layout_row="2"
-                android:layout_column="2" />
-        </GridLayout>
-    </LinearLayout>
+            <GridLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="top|center"
+                android:columnCount="4"
+                android:rowCount="4"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="100dp">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Opiniones"
+                    android:id="@+id/button"
+                    android:layout_row="1"
+                    android:layout_column="1" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Añadir al carro"
+                    android:id="@+id/button2"
+                    android:layout_gravity="right"
+                    android:layout_row="2"
+                    android:layout_column="1" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Juega"
+                    android:id="@+id/button3"
+                    android:layout_row="1"
+                    android:layout_column="2" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Follow"
+                    android:id="@+id/button4"
+                    android:layout_row="2"
+                    android:layout_column="2" />
+            </GridLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>
 

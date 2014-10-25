@@ -27,6 +27,8 @@ public class NewActivity extends Activity
      */
     private CharSequence mTitle;
 
+    private boolean login;
+
     private boolean cambio = false;
 
     @Override

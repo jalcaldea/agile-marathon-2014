@@ -16,7 +16,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ImageView;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -40,6 +39,8 @@ public class Shop extends Activity
     private CharSequence mTitle;
     private ListView mListView;
 
+    private boolean login;
+
     private boolean cambio = false;
 
     @Override
@@ -55,6 +56,13 @@ public class Shop extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout),0);
+
+        Bundle bundle = getIntent().getExtras();
+        try {
+            login = bundle.getBoolean("login");
+        }catch(NullPointerException e) {
+            login = false;
+        }
 
     /*
         mListView = (ListView) findViewById(R.id.product_label);
@@ -134,6 +142,7 @@ public class Shop extends Activity
     public void onSectionAttached(int number) {
         if(cambio){
             Intent mainIntent = new Intent();
+            if(login){
             switch (number) {
                 case 2:
                     mainIntent = new Intent().setClass(
@@ -147,9 +156,32 @@ public class Shop extends Activity
                     break;
                 case 4:
                     mainIntent = new Intent().setClass(
-                            Shop.this, User.class);
+                            Shop.this, Login.class);
                     startActivity(mainIntent);
                     break;
+            }}else{
+
+                switch (number) {
+                    case 2:
+                        mainIntent = new Intent().setClass(
+                                Shop.this, Login.class);
+                        startActivity(mainIntent);
+                        break;
+                    case 3:
+                        mainIntent = new Intent().setClass(
+                                Shop.this, Login.class);
+                        startActivity(mainIntent);
+                        break;
+                    case 4:
+                        mainIntent = new Intent().setClass(
+                                Shop.this, Login.class);
+                        startActivity(mainIntent);
+                        break;
+                }
+
+
+
+
             }}else{
             cambio = true;
         }

@@ -6,4 +6,6 @@
     tools:context=".NavigationDrawerFragment"
     android:id="@+id/section_label"
     android:background="@color/rosa"
+    android:state_selected="@color/white"
+    android:focusableInTouchMode="true"
     />

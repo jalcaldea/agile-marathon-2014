@@ -8,4 +8,5 @@
     <style name="ActionBar" parent="android:Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">#ee2d22</item>
     </style>
+
 </resources>

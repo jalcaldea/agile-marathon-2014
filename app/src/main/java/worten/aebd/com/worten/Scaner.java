@@ -42,6 +42,7 @@ public class Scaner extends Activity
     private TextView desc;
     private ImageView imagen;
 
+
     private Button juego;
     private Button buy;
     private Button follow;
@@ -143,7 +144,7 @@ public class Scaner extends Activity
                     break;
                 case 4:
                     mainIntent = new Intent().setClass(
-                            Scaner.this, User.class);
+                            Scaner.this, Login.class);
                     startActivity(mainIntent);
                     break;
                 default:break;
