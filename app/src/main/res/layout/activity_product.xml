@@ -49,54 +49,54 @@
             android:layout_gravity="center" />
 
         <GridLayout
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_gravity="top|center"
+            android:layout_gravity="top|center_horizontal"
             android:columnCount="4"
             android:rowCount="4"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="100dp">
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp">
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="75dp"
                 android:text="Opiniones"
                 android:id="@+id/button"
                 android:layout_row="1"
                 android:layout_column="1"
-                style="@style/ButtonStyle"
-                />
+
+                android:layout_gravity="center_horizontal" />
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="75dp"
                 android:text="Añadir al carro"
                 android:id="@+id/button2"
                 android:layout_gravity="right"
                 android:layout_row="2"
                 android:layout_column="1"
-                style="@style/ButtonStyle"
+
                 />
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Juega"
+                android:layout_width="150dp"
+                android:layout_height="75dp"
+                android:text="Descuentos"
                 android:id="@+id/button3"
                 android:layout_row="1"
                 android:layout_column="2"
                 android:width="2dp"
-                style="@style/ButtonStyle"
-                />
+
+                android:layout_gravity="center_horizontal" />
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="75dp"
                 android:text="Follow"
                 android:id="@+id/button4"
                 android:layout_row="2"
                 android:layout_column="2"
-                style="@style/ButtonStyle"
+
                 />
         </GridLayout>
     </LinearLayout>
