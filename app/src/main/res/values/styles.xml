@@ -3,10 +3,34 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/ActionBar</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu.Example</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Example</item>
+        <item name="android:actionBarWidgetTheme">@style/Theme.Example.Widget</item>
+        <item name="android:actionDropDownStyle">@style/DropDownNav.Example</item>
     </style>
 
     <style name="ActionBar" parent="android:Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">#ee2d22</item>
+    </style>
+
+    <style name="PopupMenu.Example" parent="android:Widget.Holo.ListPopupWindow">
+        <item name="android:popupBackground">#3B0B0B</item>
+    </style>
+    <style name="DropDownListView.Example" parent="@android:style/Widget.Holo.ListView.DropDown">
+        <item name="android:listSelector">#3B0B0B</item>
+    </style>
+
+    <style name="DropDownNav.Example" parent="@android:style/Widget.Holo.Spinner">
+        <item name="android:background">@color/rosa</item>
+        <item name="android:popupBackground">@color/green</item>
+        <item name="android:dropDownSelector">@color/darkred</item>
+    </style>
+
+    
+
+    <style name="Theme.Example.Widget" parent="@android:style/Theme.Holo">
+        <item name="android:popupMenuStyle">@style/PopupMenu.Example</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Example</item>
     </style>
 
 </resources>
