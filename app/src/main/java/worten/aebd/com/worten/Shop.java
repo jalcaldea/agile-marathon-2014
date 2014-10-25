@@ -129,27 +129,17 @@ public class Shop extends Activity
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-                mTitle = getString(R.string.imagen);
+                mTitle = getString(R.string.tienda);
                 break;
             case 2:
-                mTitle = getString(R.string.peque_elect);
+                mTitle = getString(R.string.escanear);
                 break;
             case 3:
-                mTitle = getString(R.string.informatica);
-                break;
-            case 4:
-                mTitle = getString(R.string.fotografia);
-                break;
-            case 5:
-                mTitle = getString(R.string.telefonia);
-                break;
-            case 6:
                 mTitle = getString(R.string.juegos);
                 break;
-            case 7:
-                mTitle = getString(R.string.elect);
+            case 4:
+                mTitle = getString(R.string.usuario);
                 break;
-
         }
     }
 

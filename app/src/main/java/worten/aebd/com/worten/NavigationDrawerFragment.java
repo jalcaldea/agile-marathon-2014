@@ -56,7 +56,10 @@ public class NavigationDrawerFragment extends Fragment {
 
     private int mCurrentSelectedPosition = 0;
     private boolean mFromSavedInstanceState;
-    private String[] categorias = {"Imagen y sonido", "Pequeños electrodomésticos", "Informatica", "Fotografía y Revelado","Telefonía","Juegos y Consolas","Electrodomésticos"};
+    //private String[] categorias = {"Imagen y sonido", "Pequeños electrodomésticos", "Informatica", "Fotografía y Revelado","Telefonía","Juegos y Consolas","Electrodomésticos"};
+
+    private String[] actividades = {"Tienda","Escanear","Juego","Usuario"};
+
     private boolean mUserLearnedDrawer;
     public NavigationDrawerFragment() {
     }
@@ -100,7 +103,7 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerListView.setAdapter(new ArrayAdapter<String>(
                 getActionBar().getThemedContext(),
                 android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,categorias));
+                android.R.id.text1,actividades));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }

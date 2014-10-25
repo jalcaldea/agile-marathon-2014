@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Worten</string>
-    <string name="imagen">Imagen y Sonido </string>
-    <string name="peque_elect">Pequeños electrodomésticos</string>
-    <string name="informatica">Informática</string>
-    <string name="fotografia">Fotografía y Revelado</string>
-    <string name="telefonia">Telefonía</string>
-    <string name="juegos">Juegos y consolas</string>
-    <string name="elect">Electrodomésticos</string>
+    <string name="app_name">Worten - Menú</string>
+    <string name="tienda">Worten - Tienda</string>
+    <string name="escanear">Worten - Escanear</string>
+    <string name="juegos">Worten - Juego</string>
+    <string name="usuario">Worten - Usuario</string>
 
 
 
@@ -16,7 +13,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
     <string name="action_settings">Settings</string>
-    <string name="pepe_settings">Pepe</string>
     <string name="title_activity_splash_screen">SplashScreenActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_main">MainActivity</string>
