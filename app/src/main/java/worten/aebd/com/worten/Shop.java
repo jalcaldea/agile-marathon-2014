@@ -1,5 +1,9 @@
 package worten.aebd.com.worten;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -8,7 +12,10 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.hardware.Camera;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +32,8 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import worten.aebd.com.worten.adapter.ListAdapter;
 
+import static android.hardware.Camera.PictureCallback;
+
 
 public class Shop extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -33,6 +42,7 @@ public class Shop extends Activity
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
+
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -74,7 +84,7 @@ public class Shop extends Activity
 
         ArrayList<Productos> datos = new ArrayList<Productos>();
 
-        datos.add(new Productos(R.drawable.im_mac, "MacBook Air 13,3'' APPLE MD760B 128 GB", "Intel Core i5 / Disco Duro 128 GB / RAM 4 GB / OS X Mavericks",888,"pepe"));
+        datos.add(new Productos(R.drawable.im_mac, "MacBook Air 13,3'' APPLE MD760B 128 GB", "Intel Core i5 / Disco Duro 128 GB / RAM 4 GB / OS X Mavericks", 888, "pepe"));
         datos.add(new Productos(R.drawable.im_hdd, "Disco Duro Portátil 1 TB WESTERN DIGITAL My Passport Ultra Metal Azul", "1 TB / USB 3.0",67.99,"pepe"));
         datos.add(new Productos(R.drawable.im_lavadora, "Lavadora LG F1296QDP7", "",524,"pepe"));
         datos.add(new Productos(R.drawable.im_lavadora, "TV OLED LG Smart TV 3D 55'' 55EA980V", "Televisor de última generación",2499,"pepe"));
@@ -121,6 +131,7 @@ public class Shop extends Activity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
@@ -133,9 +144,11 @@ public class Shop extends Activity
             Intent mainIntent = new Intent();
             switch (number) {
                 case 2:
+
                     mainIntent = new Intent().setClass(
                             Shop.this, Scaner.class);
                     startActivity(mainIntent);
+
                     break;
                 case 3:
                     mainIntent = new Intent().setClass(
