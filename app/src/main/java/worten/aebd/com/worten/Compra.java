@@ -13,9 +13,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -40,6 +42,8 @@ public class Compra extends Activity
 
     private boolean cambio = false;
     private ListView mListView;
+
+    private Button comprar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +76,10 @@ public class Compra extends Activity
             }
         });*/
 
+        comprar = (Button) findViewById(R.id.button);
+
         mListView = (ListView) findViewById(R.id.carro_label);
+
 
 
         mListView.setAdapter(new ListAdapter(this, R.layout.entrada, Carro.getCarro()){
@@ -95,13 +102,14 @@ public class Compra extends Activity
                     if (texto_precio != null)
                         texto_precio.setText(((Producto) entrada).getPrecio()+"€");
 
-                    TextView precio_total = (TextView) view.findViewById(R.id.precio_layout);
-                    if(precio_total != null)
-                        precio_total.setText("Precio total: "+Carro.getPrecio()+"€");
-
                 }
             }
         });
+
+
+        TextView precio_total = (TextView) findViewById(R.id.preciotext);
+        if(precio_total != null)
+            precio_total.setText("Precio total: \n"+Carro.getPrecio()+"€");
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -123,6 +131,15 @@ public class Compra extends Activity
             }
         });
 
+
+        comprar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CharSequence texto = "Has comprado!!.";
+                Toast toast = Toast.makeText(Compra.this, texto, Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
 
     }
 
