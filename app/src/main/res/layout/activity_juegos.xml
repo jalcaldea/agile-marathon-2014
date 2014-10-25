@@ -13,10 +13,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:id="@+id/imageView"
+        android:layout_gravity="right|bottom"
+        android:src="@drawable/im_coin" />
+
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="32dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="345"
+        android:id="@+id/textView"
+        android:layout_gravity="right|bottom" />
+
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/listView" />
+        android:layout_height="449dp"
+        android:id="@+id/listView"
+        android:layout_gravity="center_horizontal|top" />
 </FrameLayout>
 
 
