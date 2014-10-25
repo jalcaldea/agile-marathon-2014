@@ -214,6 +214,7 @@ public class Scaner extends Activity
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.shop, menu);
+            menu.getItem(1).setVisible(Session.isLogin());
             restoreActionBar();
             return true;
         }
@@ -226,7 +227,20 @@ public class Scaner extends Activity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.close_settings) {
+
+            Session.closeSesion();
+
+            CharSequence texto = "Has cerrado sesion";
+            Toast toast = Toast.makeText(Scaner.this, texto, Toast.LENGTH_LONG);
+            toast.show();
+
+            Intent mainIntent = new Intent();
+            mainIntent = new Intent().setClass(
+                    Scaner.this, Shop.class);
+            startActivity(mainIntent);
+            finish();
+
             return true;
         }
         return super.onOptionsItemSelected(item);

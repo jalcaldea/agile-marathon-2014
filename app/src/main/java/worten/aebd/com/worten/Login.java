@@ -65,10 +65,10 @@ public class Login extends Activity
 
             }
         });
-/*
+
         int t = (Session.isLogin() ? View.VISIBLE:View.INVISIBLE);
 
-        getActionBar().getCustomView().findViewById(R.id.close_settings).setVisibility(t);*/
+
 
     /*
         mListView = (ListView) findViewById(R.id.product_label);
@@ -163,7 +163,9 @@ public class Login extends Activity
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
+
             getMenuInflater().inflate(R.menu.shop, menu);
+            menu.getItem(1).setVisible(Session.isLogin());
             restoreActionBar();
             return true;
         }
@@ -176,7 +178,20 @@ public class Login extends Activity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.close_settings) {
+
+            Session.closeSesion();
+
+            CharSequence texto = "Has cerrado sesion";
+            Toast toast = Toast.makeText(Login.this, texto, Toast.LENGTH_LONG);
+            toast.show();
+
+            Intent mainIntent = new Intent();
+            mainIntent = new Intent().setClass(
+                    Login.this, Shop.class);
+            startActivity(mainIntent);
+            finish();
+
             return true;
         }
         return super.onOptionsItemSelected(item);

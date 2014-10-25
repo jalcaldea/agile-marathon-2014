@@ -11,6 +11,6 @@
         android:title="@string/close_settings"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:visible="false"
+
         />
 </menu>
