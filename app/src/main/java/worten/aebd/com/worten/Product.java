@@ -115,6 +115,12 @@ public class Product extends Activity
                 toast.show();
 
                 Carro.add(producto);
+
+                Intent mainIntent = new Intent();
+                mainIntent = new Intent().setClass(
+                        Product.this, Shop.class);
+                startActivity(mainIntent);
+
             }
         });
 

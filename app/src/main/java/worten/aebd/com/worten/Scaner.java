@@ -18,8 +18,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 import worten.aebd.com.worten.products.Producto;
 import worten.aebd.com.worten.products.Productos;
 
@@ -31,7 +29,6 @@ public class Scaner extends Activity
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -43,13 +40,13 @@ public class Scaner extends Activity
     private TextView nombre;
     private TextView desc;
     private ImageView imagen;
-
-
     private Button juego;
     private Button buy;
     private Button follow;
     private Button opinion;
 
+
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     private boolean cambio = false;
 
@@ -75,6 +72,7 @@ public class Scaner extends Activity
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
+
 
 
     /*
@@ -115,6 +113,26 @@ public class Scaner extends Activity
             }
         });
 
+        buy = (Button) findViewById(R.id.button2);
+
+        buy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CharSequence texto = "Has añadido "+producto.get_Nombre()+" a tu carro.";
+                Toast toast = Toast.makeText(Scaner.this, texto, Toast.LENGTH_LONG);
+                toast.show();
+
+                Carro.add(producto);
+
+                Intent mainIntent = new Intent();
+                mainIntent = new Intent().setClass(
+                        Scaner.this, Shop.class);
+                startActivity(mainIntent);
+
+            }
+        });
+
+
     }
 
     @Override
@@ -129,8 +147,9 @@ public class Scaner extends Activity
 
     public void onSectionAttached(int number) {
         if(cambio){
-            Intent mainIntent = new Intent();
+
             if(Session.isLogin()){
+            Intent mainIntent = new Intent();
             switch (number) {
                 case 1:
                     mainIntent = new Intent().setClass(
@@ -152,14 +171,9 @@ public class Scaner extends Activity
                             Scaner.this, User.class);
                     startActivity(mainIntent);
                     break;
-                case 5:
-                    mainIntent = new Intent().setClass(
-                            Scaner.this, Compra.class);
-                    startActivity(mainIntent);
-                    break;
                 default:break;
             }}else{
-
+                Intent mainIntent = new Intent();
                 switch (number) {
                     case 1:
                         mainIntent = new Intent().setClass(
@@ -181,20 +195,10 @@ public class Scaner extends Activity
                                 Scaner.this, Login.class);
                         startActivity(mainIntent);
                         break;
-                    case 5:
-                        mainIntent = new Intent().setClass(
-                                Scaner.this, Login.class);
-                        startActivity(mainIntent);
-                        break;
                     default:break;
                 }
-
-
-
-
-
-
-        }}else{
+            }
+        }else{
             cambio = true;
         }
     }
@@ -234,12 +238,6 @@ public class Scaner extends Activity
             CharSequence texto = "Has cerrado sesion";
             Toast toast = Toast.makeText(Scaner.this, texto, Toast.LENGTH_LONG);
             toast.show();
-
-            Intent mainIntent = new Intent();
-            mainIntent = new Intent().setClass(
-                    Scaner.this, Shop.class);
-            startActivity(mainIntent);
-            finish();
 
             return true;
         }
@@ -285,6 +283,5 @@ public class Scaner extends Activity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
-
 
 }

@@ -30,4 +30,9 @@ public class Carro {
         return carro;
     }
 
+    public static String tString(){
+
+        return "Carro ("+getCarro().size()+")";
+    }
+
 }
