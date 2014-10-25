@@ -12,7 +12,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import worten.aebd.com.worten.products.ListAdapter;
+import worten.aebd.com.worten.products.Producto;
+import worten.aebd.com.worten.products.Productos;
 
 
 public class User extends Activity
@@ -27,7 +35,7 @@ public class User extends Activity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
-
+    private ListView mListView;
 
     private boolean cambio = false;
 
@@ -62,8 +70,51 @@ public class User extends Activity
             }
         });*/
 
-        
-        
+        mListView = (ListView) findViewById(R.id.listView);
+        mListView.setAdapter(new ListAdapter(this, R.layout.entrada, new Productos().getLista()){
+            @Override
+            public void onEntrada(Object entrada, View view) {
+                if (entrada != null) {
+                    TextView texto_superior_entrada = (TextView) view.findViewById(R.id.textView_superior);
+                    if (texto_superior_entrada != null)
+                        texto_superior_entrada.setText(((Producto) entrada).get_Nombre());
+
+                    TextView texto_inferior_entrada = (TextView) view.findViewById(R.id.textView_inferior);
+                    if (texto_inferior_entrada != null)
+                        texto_inferior_entrada.setText(((Producto) entrada).get_textoDebajo());
+
+                    ImageView imagen_entrada = (ImageView) view.findViewById(R.id.imageView_imagen);
+                    if (imagen_entrada != null)
+                        imagen_entrada.setImageResource(((Producto) entrada).get_idImagen());
+
+                    TextView texto_precio = (TextView) view.findViewById(R.id.textView_precio);
+                    if (texto_precio != null)
+                        texto_precio.setText(((Producto) entrada).getPrecio()+"€");
+
+                }
+            }
+        });
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> pariente, View view, int posicion, long id) {
+                Producto elegido = (Producto) pariente.getItemAtPosition(posicion);
+
+                // pariente
+
+
+                Intent mainIntent = new Intent();
+                mainIntent = new Intent().setClass(
+                        User.this, Product.class);
+                mainIntent.putExtra("producto", elegido.getId());
+                startActivity(mainIntent);
+
+                // CharSequence texto = "Seleccionado: " + elegido.get_textoDebajo();
+                //Toast toast = Toast.makeText(Shop.this, texto, Toast.LENGTH_LONG);
+                //toast.show();
+            }
+        });
+
 
     }
 
