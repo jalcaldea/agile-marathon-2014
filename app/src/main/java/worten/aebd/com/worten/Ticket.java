@@ -12,21 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 
-import worten.aebd.com.worten.products.ListAdapter;
-import worten.aebd.com.worten.products.Producto;
-import worten.aebd.com.worten.products.Productos;
-
-
-public class Compra extends Activity
+public class Ticket extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -39,16 +29,14 @@ public class Compra extends Activity
      */
     private CharSequence mTitle;
 
+    private Button ok;
 
     private boolean cambio = false;
-    private ListView mListView;
-
-    private Button comprar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_compra);
+        setContentView(R.layout.activity_ticket);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -59,7 +47,7 @@ public class Compra extends Activity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout),1);
 
-
+        ok = (Button) findViewById(R.id.button);
     /*
         mListView = (ListView) findViewById(R.id.product_label);
         mListView.setAdapter(new ArrayAdapter<String>(getActionBar().getThemedContext(),
@@ -76,71 +64,17 @@ public class Compra extends Activity
             }
         });*/
 
-        comprar = (Button) findViewById(R.id.button);
-
-        mListView = (ListView) findViewById(R.id.carro_label);
-
-
-
-        mListView.setAdapter(new ListAdapter(this, R.layout.entrada, Carro.getCarro()){
-            @Override
-            public void onEntrada(Object entrada, View view) {
-                if (entrada != null) {
-                    TextView texto_superior_entrada = (TextView) view.findViewById(R.id.textView_superior);
-                    if (texto_superior_entrada != null)
-                        texto_superior_entrada.setText(((Producto) entrada).get_Nombre());
-
-                    TextView texto_inferior_entrada = (TextView) view.findViewById(R.id.textView_inferior);
-                    if (texto_inferior_entrada != null)
-                        texto_inferior_entrada.setText(((Producto) entrada).get_textoDebajo());
-
-                    ImageView imagen_entrada = (ImageView) view.findViewById(R.id.imageView_imagen);
-                    if (imagen_entrada != null)
-                        imagen_entrada.setImageResource(((Producto) entrada).get_idImagen());
-
-                    TextView texto_precio = (TextView) view.findViewById(R.id.textView_precio);
-                    if (texto_precio != null)
-                        texto_precio.setText(((Producto) entrada).getPrecio()+"€");
-
-                }
-            }
-        });
-
-
-        TextView precio_total = (TextView) findViewById(R.id.preciotext);
-        if(precio_total != null)
-            precio_total.setText("Precio total: \n"+Carro.getPrecio()+"€");
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> pariente, View view, int posicion, long id) {
-                Producto elegido = (Producto) pariente.getItemAtPosition(posicion);
-
-                // pariente
-
-
-                Intent mainIntent = new Intent();
-                mainIntent = new Intent().setClass(
-                        Compra.this, Product.class);
-                mainIntent.putExtra("producto", elegido.getId());
-                startActivity(mainIntent);
-
-                // CharSequence texto = "Seleccionado: " + elegido.get_textoDebajo();
-                //Toast toast = Toast.makeText(Shop.this, texto, Toast.LENGTH_LONG);
-                //toast.show();
-            }
-        });
-
-
-        comprar.setOnClickListener(new View.OnClickListener() {
+        ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Carro.erase();
                 Intent mainIntent = new Intent();
                 mainIntent = new Intent().setClass(
-                        Compra.this, Ticket.class);
+                        Ticket.this, Shop.class);
                 startActivity(mainIntent);
             }
         });
+        
 
     }
 
@@ -161,27 +95,27 @@ public class Compra extends Activity
                 switch (number) {
                     case 1:
                         mainIntent = new Intent().setClass(
-                                Compra.this, Shop.class);
+                                Ticket.this, Shop.class);
                         startActivity(mainIntent);
                         break;
                     case 2:
                         mainIntent = new Intent().setClass(
-                                Compra.this, Scaner.class);
+                                Ticket.this, Scaner.class);
                         startActivity(mainIntent);
                         break;
                     case 3:
                         mainIntent = new Intent().setClass(
-                                Compra.this, Games.class);
+                                Ticket.this, Games.class);
                         startActivity(mainIntent);
                         break;
                     case 4:
                         mainIntent = new Intent().setClass(
-                                Compra.this, User.class);
+                                Ticket.this, Ticket.class);
                         startActivity(mainIntent);
                         break;
                     case 5:
                         mainIntent = new Intent().setClass(
-                                Compra.this, Compra.class);
+                                Ticket.this, Compra.class);
                         startActivity(mainIntent);
                         break;
                     default:break;
@@ -190,27 +124,27 @@ public class Compra extends Activity
                 switch (number) {
                     case 1:
                         mainIntent = new Intent().setClass(
-                                Compra.this, Shop.class);
+                                Ticket.this, Shop.class);
                         startActivity(mainIntent);
                         break;
                     case 2:
                         mainIntent = new Intent().setClass(
-                                Compra.this, Login.class);
+                                Ticket.this, Login.class);
                         startActivity(mainIntent);
                         break;
                     case 3:
                         mainIntent = new Intent().setClass(
-                                Compra.this, Login.class);
+                                Ticket.this, Login.class);
                         startActivity(mainIntent);
                         break;
                     case 4:
                         mainIntent = new Intent().setClass(
-                                Compra.this, Login.class);
+                                Ticket.this, Login.class);
                         startActivity(mainIntent);
                         break;
                     case 5:
                         mainIntent = new Intent().setClass(
-                                Compra.this, Login.class);
+                                Ticket.this, Login.class);
                         startActivity(mainIntent);
                         break;
                     default:break;
@@ -241,6 +175,7 @@ public class Compra extends Activity
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.shop, menu);
+            menu.getItem(1).setVisible(Session.isLogin());
             restoreActionBar();
             return true;
         }
@@ -253,7 +188,20 @@ public class Compra extends Activity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.close_settings) {
+
+            Session.closeSesion();
+
+            CharSequence texto = "Has cerrado sesion";
+            Toast toast = Toast.makeText(Ticket.this, texto, Toast.LENGTH_LONG);
+            toast.show();
+
+            Intent mainIntent = new Intent();
+            mainIntent = new Intent().setClass(
+                    Ticket.this, Shop.class);
+            startActivity(mainIntent);
+            finish();
+
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -286,7 +234,7 @@ public class Compra extends Activity
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
+                Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_shop, container, false);
             return rootView;
         }
@@ -294,7 +242,7 @@ public class Compra extends Activity
         @Override
         public void onAttach(Activity activity) {
             super.onAttach(activity);
-            ((Compra) activity).onSectionAttached(
+            ((Ticket) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }

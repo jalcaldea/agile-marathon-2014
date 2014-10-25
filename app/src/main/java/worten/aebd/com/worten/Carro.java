@@ -35,4 +35,8 @@ public class Carro {
         return "Carro ("+getCarro().size()+")";
     }
 
+    public static void erase(){
+        carro = new ArrayList<Producto>();
+    }
+
 }

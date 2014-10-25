@@ -32,6 +32,11 @@
             android:label="Worten - Perfil" >
         </activity>
         <activity
+            android:name=".Ticket"
+            android:label="Worten - Ticket" >
+        </activity>
+
+        <activity
             android:name=".SplashScreenActivity"
             android:label="Worten" >
             <intent-filter>
