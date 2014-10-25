@@ -1,32 +1,25 @@
 package worten.aebd.com.worten;
 
-import android.app.Activity;
-
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ImageView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.widget.TextView;
 
-
-import worten.aebd.com.worten.products.ListAdapter;
 import worten.aebd.com.worten.products.Producto;
 import worten.aebd.com.worten.products.Productos;
 
 
-public class Shop extends Activity
+public class Product extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -38,23 +31,33 @@ public class Shop extends Activity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
-    private ListView mListView;
+
+    private Producto producto;
+
+    private TextView nombre;
+    private TextView desc;
+    private ImageView imagen;
 
     private boolean cambio = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shop);
+        setContentView(R.layout.activity_product);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
+
         mTitle = getTitle();
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout),0);
+                (DrawerLayout) findViewById(R.id.drawer_layout),1);
+
+        Bundle bundle = getIntent().getExtras();
+        int n = bundle.getInt("producto");
+        producto = new Productos().getLista().get(n);
 
     /*
         mListView = (ListView) findViewById(R.id.product_label);
@@ -72,53 +75,17 @@ public class Shop extends Activity
             }
         });*/
 
-
-        mListView = (ListView) findViewById(R.id.product_label);
-        mListView.setAdapter(new ListAdapter(this, R.layout.entrada, new Productos().getLista()){
-            @Override
-            public void onEntrada(Object entrada, View view) {
-                if (entrada != null) {
-                    TextView texto_superior_entrada = (TextView) view.findViewById(R.id.textView_superior);
-                    if (texto_superior_entrada != null)
-                        texto_superior_entrada.setText(((Producto) entrada).get_Nombre());
-
-                    TextView texto_inferior_entrada = (TextView) view.findViewById(R.id.textView_inferior);
-                    if (texto_inferior_entrada != null)
-                        texto_inferior_entrada.setText(((Producto) entrada).get_textoDebajo());
-
-                    ImageView imagen_entrada = (ImageView) view.findViewById(R.id.imageView_imagen);
-                    if (imagen_entrada != null)
-                        imagen_entrada.setImageResource(((Producto) entrada).get_idImagen());
-
-                    TextView texto_precio = (TextView) view.findViewById(R.id.textView_precio);
-                    if (texto_precio != null)
-                        texto_precio.setText(((Producto) entrada).getPrecio()+"€");
-
-                }
-            }
-        });
-
-        mListView.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> pariente, View view, int posicion, long id) {
-                Producto elegido = (Producto) pariente.getItemAtPosition(posicion);
-
-               // pariente
-
-
-                Intent mainIntent = new Intent();
-                mainIntent = new Intent().setClass(
-                        Shop.this, Product.class);
-                mainIntent.putExtra("producto", elegido.getId());
-                startActivity(mainIntent);
-
-               // CharSequence texto = "Seleccionado: " + elegido.get_textoDebajo();
-                //Toast toast = Toast.makeText(Shop.this, texto, Toast.LENGTH_LONG);
-                //toast.show();
-            }
-        });
         
-        
+        nombre = (TextView) findViewById(R.id.nombre);
+        nombre.setText((CharSequence) producto.get_Nombre());
+
+        desc = (TextView) findViewById(R.id.desc);
+        desc.setText((CharSequence) producto.getDesc());
+
+       imagen = (ImageView) findViewById(R.id.imageView);
+        if (imagen != null)
+            imagen.setImageResource(producto.get_idImagen());
+
 
     }
 
@@ -129,6 +96,7 @@ public class Shop extends Activity
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                 .commit();
+
     }
 
     public void onSectionAttached(int number) {
@@ -137,17 +105,17 @@ public class Shop extends Activity
             switch (number) {
                 case 2:
                     mainIntent = new Intent().setClass(
-                            Shop.this, Scaner.class);
+                            Product.this, Scaner.class);
                     startActivity(mainIntent);
                     break;
                 case 3:
                     mainIntent = new Intent().setClass(
-                            Shop.this, Games.class);
+                            Product.this, Games.class);
                     startActivity(mainIntent);
                     break;
                 case 4:
                     mainIntent = new Intent().setClass(
-                            Shop.this, User.class);
+                            Product.this, User.class);
                     startActivity(mainIntent);
                     break;
             }}else{
@@ -223,7 +191,7 @@ public class Shop extends Activity
         @Override
         public void onAttach(Activity activity) {
             super.onAttach(activity);
-            ((Shop) activity).onSectionAttached(
+            ((Product) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
