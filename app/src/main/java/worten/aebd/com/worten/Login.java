@@ -29,7 +29,6 @@ public class Login extends Activity
      */
     private CharSequence mTitle;
 
-    private boolean login;
 
     private Button enter;
 
@@ -54,18 +53,22 @@ public class Login extends Activity
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Session.initSesion();
                 CharSequence texto = "Has añadido iniciado sesión correctamente.";
                 Toast toast = Toast.makeText(Login.this, texto, Toast.LENGTH_LONG);
                 toast.show();
                 Intent mainIntent = new Intent();
                 mainIntent = new Intent().setClass(
                         Login.this, Shop.class);
-                mainIntent.putExtra("login",true);
                 startActivity(mainIntent);
                 finish();
 
             }
         });
+/*
+        int t = (Session.isLogin() ? View.VISIBLE:View.INVISIBLE);
+
+        getActionBar().getCustomView().findViewById(R.id.close_settings).setVisibility(t);*/
 
     /*
         mListView = (ListView) findViewById(R.id.product_label);
@@ -101,7 +104,7 @@ public class Login extends Activity
     public void onSectionAttached(int number) {
         if(cambio){
             Intent mainIntent = new Intent();
-        if(login){
+        if(Session.isLogin()){
         switch (number) {
             case 1:
                 mainIntent = new Intent().setClass(

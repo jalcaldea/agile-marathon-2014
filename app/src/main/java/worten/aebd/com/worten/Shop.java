@@ -6,6 +6,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -39,7 +40,6 @@ public class Shop extends Activity
     private CharSequence mTitle;
     private ListView mListView;
 
-    private boolean login;
 
     private boolean cambio = false;
 
@@ -57,12 +57,6 @@ public class Shop extends Activity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout),0);
 
-        Bundle bundle = getIntent().getExtras();
-        try {
-            login = bundle.getBoolean("login");
-        }catch(NullPointerException e) {
-            login = false;
-        }
 
     /*
         mListView = (ListView) findViewById(R.id.product_label);
@@ -142,24 +136,21 @@ public class Shop extends Activity
     public void onSectionAttached(int number) {
         if(cambio){
             Intent mainIntent = new Intent();
-            if(login){
+            if(Session.isLogin()){
             switch (number) {
                 case 2:
                     mainIntent = new Intent().setClass(
                             Shop.this, Scaner.class);
-                    mainIntent.putExtra("login",login);
                     startActivity(mainIntent);
                     break;
                 case 3:
                     mainIntent = new Intent().setClass(
                             Shop.this, Games.class);
-                    mainIntent.putExtra("login",login);
                     startActivity(mainIntent);
                     break;
                 case 4:
                     mainIntent = new Intent().setClass(
                             Shop.this, User.class);
-                    mainIntent.putExtra("login",login);
                     startActivity(mainIntent);
                     break;
             }}else{
