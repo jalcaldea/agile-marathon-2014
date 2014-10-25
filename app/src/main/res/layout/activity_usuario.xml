@@ -13,6 +13,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageButton
+        android:layout_width="153dp"
+        android:layout_height="189dp"
+        android:id="@+id/imageButton"
+        android:scaleType="fitXY"
+        android:layout_gravity="left|top"
+        android:src="@drawable/im_peter" />
+
+    <TextView
+        android:layout_width="179dp"
+        android:layout_height="145dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Nombre: Peter65\nFecha de nacimiento: 29/2/1965\nLocalidad: Pitoria\nRango: VIP"
+        android:id="@+id/textView"
+        android:layout_gravity="right|top" />
+
+    <TextView
+        android:layout_width="330dp"
+        android:layout_height="160dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Porcentaje de descuento: 4.6%"
+        android:id="@+id/textView2"
+        android:layout_gravity="right|bottom" />
 </FrameLayout>
 
 
