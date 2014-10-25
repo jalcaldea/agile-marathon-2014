@@ -5,33 +5,36 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Worten"
         android:theme="@style/AppTheme" >
 
         <activity
         android:name=".Shop"
-        android:label="@string/app_name" >
+        android:label="Worten - Tienda" >
 
         </activity>
         <activity
             android:name=".Scaner"
-            android:label="@string/app_name" >
+            android:label="Worten - Escáner" >
 
         </activity>
         <activity
             android:name=".Games"
-            android:label="@string/app_name" >
+            android:label="Worten - Cazadescuentos" >
 
         </activity>
         <activity
-            android:name=".User"
-            android:label="@string/app_name" >
+            android:name=".Login"
+            android:label="Worten - Inicio de sesión" >
 
         </activity>
         <activity
             android:name=".Product"
-            android:label="@string/app_name" >
-
+            android:label="Worten - Detalles del producto" >
+        </activity>
+        <activity
+            android:name=".User"
+            android:label="Worten - Perfil" >
         </activity>
         <activity
             android:name=".SplashScreenActivity"

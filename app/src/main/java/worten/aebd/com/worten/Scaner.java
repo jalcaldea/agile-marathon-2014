@@ -48,6 +48,8 @@ public class Scaner extends Activity
     private Button follow;
     private Button opinion;
 
+    private boolean login;
+
     private boolean cambio = false;
 
     @Override
@@ -66,6 +68,9 @@ public class Scaner extends Activity
                 (DrawerLayout) findViewById(R.id.drawer_layout),5);
 
         producto = new Productos().getLista().get(0);
+
+        Bundle bundle = getIntent().getExtras();
+        login = bundle.getBoolean("login");
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -126,29 +131,65 @@ public class Scaner extends Activity
     public void onSectionAttached(int number) {
         if(cambio){
             Intent mainIntent = new Intent();
+            if(login){
             switch (number) {
                 case 1:
                     mainIntent = new Intent().setClass(
                             Scaner.this, Shop.class);
+                    mainIntent.putExtra("login",login);
                     startActivity(mainIntent);
                     break;
                 case 2:
                     mainIntent = new Intent().setClass(
                             Scaner.this, Scaner.class);
+                    mainIntent.putExtra("login",login);
                     startActivity(mainIntent);
                     break;
                 case 3:
                     mainIntent = new Intent().setClass(
                             Scaner.this, Games.class);
+                    mainIntent.putExtra("login",login);
                     startActivity(mainIntent);
                     break;
                 case 4:
                     mainIntent = new Intent().setClass(
-                            Scaner.this, Login.class);
+                            Scaner.this, User.class);
+                    mainIntent.putExtra("login",login);
                     startActivity(mainIntent);
                     break;
                 default:break;
             }}else{
+
+                switch (number) {
+                    case 1:
+                        mainIntent = new Intent().setClass(
+                                Scaner.this, Shop.class);
+                        startActivity(mainIntent);
+                        break;
+                    case 2:
+                        mainIntent = new Intent().setClass(
+                                Scaner.this, Login.class);
+                        startActivity(mainIntent);
+                        break;
+                    case 3:
+                        mainIntent = new Intent().setClass(
+                                Scaner.this, Login.class);
+                        startActivity(mainIntent);
+                        break;
+                    case 4:
+                        mainIntent = new Intent().setClass(
+                                Scaner.this, Login.class);
+                        startActivity(mainIntent);
+                        break;
+                    default:break;
+                }
+
+
+
+
+
+
+        }}else{
             cambio = true;
         }
     }

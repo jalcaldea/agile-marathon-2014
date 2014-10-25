@@ -147,16 +147,19 @@ public class Shop extends Activity
                 case 2:
                     mainIntent = new Intent().setClass(
                             Shop.this, Scaner.class);
+                    mainIntent.putExtra("login",login);
                     startActivity(mainIntent);
                     break;
                 case 3:
                     mainIntent = new Intent().setClass(
                             Shop.this, Games.class);
+                    mainIntent.putExtra("login",login);
                     startActivity(mainIntent);
                     break;
                 case 4:
                     mainIntent = new Intent().setClass(
-                            Shop.this, Login.class);
+                            Shop.this, User.class);
+                    mainIntent.putExtra("login",login);
                     startActivity(mainIntent);
                     break;
             }}else{

@@ -28,6 +28,7 @@ public class User extends Activity
     private CharSequence mTitle;
 
 
+    private boolean login;
     private boolean cambio = false;
 
     @Override
@@ -43,6 +44,9 @@ public class User extends Activity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout),1);
+
+        Bundle bundle = getIntent().getExtras();
+        login = bundle.getBoolean("login");
 
     /*
         mListView = (ListView) findViewById(R.id.product_label);
@@ -78,23 +82,65 @@ public class User extends Activity
     public void onSectionAttached(int number) {
         if(cambio){
             Intent mainIntent = new Intent();
-        switch (number) {
-            case 1:
-                mainIntent = new Intent().setClass(
-                        User.this, Shop.class);
-                startActivity(mainIntent);
-                break;
-            case 2:
-                mainIntent = new Intent().setClass(
-                        User.this, Scaner.class);
-                startActivity(mainIntent);
-                break;
-            case 3:
-                mainIntent = new Intent().setClass(
-                        User.this, Games.class);
-                startActivity(mainIntent);
-                break;
-        }}else{
+            if(login){
+                switch (number) {
+                    case 1:
+                        mainIntent = new Intent().setClass(
+                                User.this, Shop.class);
+                        mainIntent.putExtra("login",login);
+                        startActivity(mainIntent);
+                        break;
+                    case 2:
+                        mainIntent = new Intent().setClass(
+                                User.this, Scaner.class);
+                        mainIntent.putExtra("login",login);
+                        startActivity(mainIntent);
+                        break;
+                    case 3:
+                        mainIntent = new Intent().setClass(
+                                User.this, Games.class);
+                        mainIntent.putExtra("login",login);
+                        startActivity(mainIntent);
+                        break;
+                    case 4:
+                        mainIntent = new Intent().setClass(
+                                User.this, User.class);
+                        mainIntent.putExtra("login",login);
+                        startActivity(mainIntent);
+                        break;
+                    default:break;
+                }}else{
+
+                switch (number) {
+                    case 1:
+                        mainIntent = new Intent().setClass(
+                                User.this, Shop.class);
+                        startActivity(mainIntent);
+                        break;
+                    case 2:
+                        mainIntent = new Intent().setClass(
+                                User.this, Login.class);
+                        startActivity(mainIntent);
+                        break;
+                    case 3:
+                        mainIntent = new Intent().setClass(
+                                User.this, Login.class);
+                        startActivity(mainIntent);
+                        break;
+                    case 4:
+                        mainIntent = new Intent().setClass(
+                                User.this, Login.class);
+                        startActivity(mainIntent);
+                        break;
+                    default:break;
+                }
+
+
+
+
+
+
+            }}else{
             cambio = true;
         }
     }
