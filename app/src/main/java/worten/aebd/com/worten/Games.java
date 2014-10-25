@@ -12,6 +12,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import worten.aebd.com.worten.juegos.Juego;
+import worten.aebd.com.worten.juegos.Juegos;
+import worten.aebd.com.worten.products.ListAdapter;
+import worten.aebd.com.worten.products.Producto;
+import worten.aebd.com.worten.products.Productos;
 
 
 public class Games extends Activity
@@ -26,6 +36,7 @@ public class Games extends Activity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+    private ListView mListView;
 
     private boolean cambio = false;
 
@@ -65,7 +76,48 @@ public class Games extends Activity
             }
         });*/
 
-        
+        mListView = (ListView) findViewById(R.id.listView);
+        mListView.setAdapter(new ListAdapter(this, R.layout.entrada, new Juegos().getLista()){
+            @Override
+            public void onEntrada(Object entrada, View view) {
+                if (entrada != null) {
+                    TextView texto_superior_entrada = (TextView) view.findViewById(R.id.textView_superior);
+                    if (texto_superior_entrada != null)
+                        texto_superior_entrada.setText(((Juego) entrada).getNombre());
+
+                    TextView texto_inferior_entrada = (TextView) view.findViewById(R.id.textView_inferior);
+                    if (texto_inferior_entrada != null)
+                        texto_inferior_entrada.setText(((Juego) entrada).getGenero());
+
+                    ImageView imagen_entrada = (ImageView) view.findViewById(R.id.imageView_imagen);
+                    if (imagen_entrada != null)
+                        imagen_entrada.setImageResource(((Juego) entrada).getIdImagen());
+
+
+
+                }
+            }
+        });
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> pariente, View view, int posicion, long id) {
+                Juego elegido = (Juego) pariente.getItemAtPosition(posicion);
+
+                // pariente
+
+
+                Intent mainIntent = new Intent();
+                mainIntent = new Intent().setClass(
+                        Games.this, Juego.class);
+                mainIntent.putExtra("juego", elegido.getId());
+                startActivity(mainIntent);
+
+                // CharSequence texto = "Seleccionado: " + elegido.get_textoDebajo();
+                //Toast toast = Toast.makeText(Shop.this, texto, Toast.LENGTH_LONG);
+                //toast.show();
+            }
+        });
         
 
     }
