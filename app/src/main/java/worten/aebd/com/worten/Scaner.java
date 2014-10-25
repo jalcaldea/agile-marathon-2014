@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import worten.aebd.com.worten.products.Producto;
 import worten.aebd.com.worten.products.Productos;
 
@@ -150,6 +152,11 @@ public class Scaner extends Activity
                             Scaner.this, User.class);
                     startActivity(mainIntent);
                     break;
+                case 5:
+                    mainIntent = new Intent().setClass(
+                            Scaner.this, Compra.class);
+                    startActivity(mainIntent);
+                    break;
                 default:break;
             }}else{
 
@@ -170,6 +177,11 @@ public class Scaner extends Activity
                         startActivity(mainIntent);
                         break;
                     case 4:
+                        mainIntent = new Intent().setClass(
+                                Scaner.this, Login.class);
+                        startActivity(mainIntent);
+                        break;
+                    case 5:
                         mainIntent = new Intent().setClass(
                                 Scaner.this, Login.class);
                         startActivity(mainIntent);
@@ -259,5 +271,6 @@ public class Scaner extends Activity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
+
 
 }

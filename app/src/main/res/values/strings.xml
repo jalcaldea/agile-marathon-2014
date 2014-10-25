@@ -13,5 +13,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Ajustes</string>
     <string name="close_settings">Cerrar Sesión</string>
+    <string name="title_activity_compra">Worten - Carro</string>
 
 </resources>

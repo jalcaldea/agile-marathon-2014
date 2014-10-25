@@ -153,6 +153,11 @@ public class Shop extends Activity
                             Shop.this, User.class);
                     startActivity(mainIntent);
                     break;
+                case 5:
+                    mainIntent = new Intent().setClass(
+                            Shop.this, Compra.class);
+                    startActivity(mainIntent);
+                    break;
             }}else{
 
                 switch (number) {
@@ -167,6 +172,11 @@ public class Shop extends Activity
                         startActivity(mainIntent);
                         break;
                     case 4:
+                        mainIntent = new Intent().setClass(
+                                Shop.this, Login.class);
+                        startActivity(mainIntent);
+                        break;
+                    case 5:
                         mainIntent = new Intent().setClass(
                                 Shop.this, Login.class);
                         startActivity(mainIntent);

@@ -101,6 +101,11 @@ public class User extends Activity
                                 User.this, User.class);
                         startActivity(mainIntent);
                         break;
+                    case 5:
+                        mainIntent = new Intent().setClass(
+                                User.this, Compra.class);
+                        startActivity(mainIntent);
+                        break;
                     default:break;
                 }}else{
 
@@ -121,6 +126,11 @@ public class User extends Activity
                         startActivity(mainIntent);
                         break;
                     case 4:
+                        mainIntent = new Intent().setClass(
+                                User.this, Login.class);
+                        startActivity(mainIntent);
+                        break;
+                    case 5:
                         mainIntent = new Intent().setClass(
                                 User.this, Login.class);
                         startActivity(mainIntent);

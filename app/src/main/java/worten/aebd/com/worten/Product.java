@@ -105,6 +105,19 @@ public class Product extends Activity
             }
         });
 
+        buy = (Button) findViewById(R.id.button2);
+
+        buy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CharSequence texto = "Has añadido "+producto.get_Nombre()+" a tu carro.";
+                Toast toast = Toast.makeText(Product.this, texto, Toast.LENGTH_LONG);
+                toast.show();
+
+                Carro.add(producto);
+            }
+        });
+
 
     }
 

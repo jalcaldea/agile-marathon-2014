@@ -58,7 +58,7 @@ public class NavigationDrawerFragment extends Fragment {
     private boolean mFromSavedInstanceState;
     //private String[] categorias = {"Imagen y sonido", "Pequeños electrodomésticos", "Informatica", "Fotografía y Revelado","Telefonía","Juegos y Consolas","Electrodomésticos"};
 
-    private String[] actividades = {"Tienda","Escanear","Cazadescuentos","Usuario"};
+    private String[] actividades = {"Tienda","Escanear","Cazadescuentos","Usuario", "Carro"};
 
     private boolean mUserLearnedDrawer;
     public NavigationDrawerFragment() {

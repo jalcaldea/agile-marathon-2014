@@ -16,16 +16,15 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import worten.aebd.com.worten.juegos.Juego;
-import worten.aebd.com.worten.juegos.Juegos;
+import java.util.ArrayList;
+
 import worten.aebd.com.worten.products.ListAdapter;
 import worten.aebd.com.worten.products.Producto;
 import worten.aebd.com.worten.products.Productos;
 
 
-public class Games extends Activity
+public class Compra extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -37,15 +36,15 @@ public class Games extends Activity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
-    private ListView mListView;
+
 
     private boolean cambio = false;
-
+    private ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_juegos);
+        setContentView(R.layout.activity_compra);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -54,7 +53,7 @@ public class Games extends Activity
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout),2);
+                (DrawerLayout) findViewById(R.id.drawer_layout),1);
 
 
     /*
@@ -73,24 +72,32 @@ public class Games extends Activity
             }
         });*/
 
-        mListView = (ListView) findViewById(R.id.listView);
-        mListView.setAdapter(new ListAdapter(this, R.layout.entrada, new Juegos().getLista()){
+        mListView = (ListView) findViewById(R.id.carro_label);
+
+
+        mListView.setAdapter(new ListAdapter(this, R.layout.entrada, Carro.getCarro()){
             @Override
             public void onEntrada(Object entrada, View view) {
                 if (entrada != null) {
                     TextView texto_superior_entrada = (TextView) view.findViewById(R.id.textView_superior);
                     if (texto_superior_entrada != null)
-                        texto_superior_entrada.setText(((Juego) entrada).getNombre());
+                        texto_superior_entrada.setText(((Producto) entrada).get_Nombre());
 
                     TextView texto_inferior_entrada = (TextView) view.findViewById(R.id.textView_inferior);
                     if (texto_inferior_entrada != null)
-                        texto_inferior_entrada.setText(((Juego) entrada).getGenero());
+                        texto_inferior_entrada.setText(((Producto) entrada).get_textoDebajo());
 
                     ImageView imagen_entrada = (ImageView) view.findViewById(R.id.imageView_imagen);
                     if (imagen_entrada != null)
-                        imagen_entrada.setImageResource(((Juego) entrada).getIdImagen());
+                        imagen_entrada.setImageResource(((Producto) entrada).get_idImagen());
 
+                    TextView texto_precio = (TextView) view.findViewById(R.id.textView_precio);
+                    if (texto_precio != null)
+                        texto_precio.setText(((Producto) entrada).getPrecio()+"€");
 
+                    TextView precio_total = (TextView) view.findViewById(R.id.precio_layout);
+                    if(precio_total != null)
+                        precio_total.setText("Precio total: "+Carro.getPrecio()+"€");
 
                 }
             }
@@ -99,23 +106,23 @@ public class Games extends Activity
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> pariente, View view, int posicion, long id) {
-                Juego elegido = (Juego) pariente.getItemAtPosition(posicion);
+                Producto elegido = (Producto) pariente.getItemAtPosition(posicion);
 
                 // pariente
-/*
+
 
                 Intent mainIntent = new Intent();
                 mainIntent = new Intent().setClass(
-                        Games.this, Juego.class);
-                mainIntent.putExtra("juego", elegido.getId());
+                        Compra.this, Product.class);
+                mainIntent.putExtra("producto", elegido.getId());
                 startActivity(mainIntent);
-*/
-                 CharSequence texto = "Seleccionado: " + elegido.getNombre();
-                Toast toast = Toast.makeText(Games.this, texto, Toast.LENGTH_LONG);
-                toast.show();
+
+                // CharSequence texto = "Seleccionado: " + elegido.get_textoDebajo();
+                //Toast toast = Toast.makeText(Shop.this, texto, Toast.LENGTH_LONG);
+                //toast.show();
             }
         });
-        
+
 
     }
 
@@ -133,57 +140,67 @@ public class Games extends Activity
         if(cambio){
             Intent mainIntent = new Intent();
             if(Session.isLogin()){
-            switch (number) {
-                case 1:
-                    mainIntent = new Intent().setClass(
-                            Games.this, Shop.class);
-                    startActivity(mainIntent);
-                    break;
-                case 2:
-                    mainIntent = new Intent().setClass(
-                            Games.this, Scaner.class);
-                    startActivity(mainIntent);
-                    break;
-                case 4:
-                    mainIntent = new Intent().setClass(
-                            Games.this, User.class);
-                    startActivity(mainIntent);
-                    break;
-                case 5:
-                    mainIntent = new Intent().setClass(
-                            Games.this, Compra.class);
-                    startActivity(mainIntent);
-                    break;
-            }}else{
-
                 switch (number) {
                     case 1:
                         mainIntent = new Intent().setClass(
-                                Games.this, Shop.class);
+                                Compra.this, Shop.class);
                         startActivity(mainIntent);
                         break;
                     case 2:
                         mainIntent = new Intent().setClass(
-                                Games.this, Login.class);
+                                Compra.this, Scaner.class);
                         startActivity(mainIntent);
                         break;
                     case 3:
                         mainIntent = new Intent().setClass(
-                                Games.this, Login.class);
+                                Compra.this, Games.class);
                         startActivity(mainIntent);
                         break;
                     case 4:
                         mainIntent = new Intent().setClass(
-                                Games.this, Login.class);
+                                Compra.this, User.class);
                         startActivity(mainIntent);
                         break;
                     case 5:
                         mainIntent = new Intent().setClass(
-                                Games.this, Login.class);
+                                Compra.this, Compra.class);
+                        startActivity(mainIntent);
+                        break;
+                    default:break;
+                }}else{
+
+                switch (number) {
+                    case 1:
+                        mainIntent = new Intent().setClass(
+                                Compra.this, Shop.class);
+                        startActivity(mainIntent);
+                        break;
+                    case 2:
+                        mainIntent = new Intent().setClass(
+                                Compra.this, Login.class);
+                        startActivity(mainIntent);
+                        break;
+                    case 3:
+                        mainIntent = new Intent().setClass(
+                                Compra.this, Login.class);
+                        startActivity(mainIntent);
+                        break;
+                    case 4:
+                        mainIntent = new Intent().setClass(
+                                Compra.this, Login.class);
+                        startActivity(mainIntent);
+                        break;
+                    case 5:
+                        mainIntent = new Intent().setClass(
+                                Compra.this, Login.class);
                         startActivity(mainIntent);
                         break;
                     default:break;
                 }
+
+
+
+
 
 
             }}else{
@@ -251,7 +268,7 @@ public class Games extends Activity
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
+                                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_shop, container, false);
             return rootView;
         }
@@ -259,7 +276,7 @@ public class Games extends Activity
         @Override
         public void onAttach(Activity activity) {
             super.onAttach(activity);
-            ((Games) activity).onSectionAttached(
+            ((Compra) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
