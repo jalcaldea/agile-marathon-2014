@@ -41,7 +41,7 @@ public class Games extends Activity
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout),1);
+                (DrawerLayout) findViewById(R.id.drawer_layout),2);
 
     /*
         mListView = (ListView) findViewById(R.id.product_label);

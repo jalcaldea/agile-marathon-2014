@@ -13,6 +13,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import worten.aebd.com.worten.products.Producto;
+import worten.aebd.com.worten.products.Productos;
 
 
 public class Scaner extends Activity
@@ -24,32 +31,46 @@ public class Scaner extends Activity
     private NavigationDrawerFragment mNavigationDrawerFragment;
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
-
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+
+    private Producto producto;
+
+    private TextView nombre;
+    private TextView desc;
+    private ImageView imagen;
+
+    private Button juego;
+    private Button buy;
+    private Button follow;
+    private Button opinion;
 
     private boolean cambio = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scaner);
+        setContentView(R.layout.activity_product);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
+
         mTitle = getTitle();
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout),1);
+                (DrawerLayout) findViewById(R.id.drawer_layout),5);
+
+        producto = new Productos().getLista().get(0);
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
+
 
     /*
         mListView = (ListView) findViewById(R.id.product_label);
@@ -68,7 +89,26 @@ public class Scaner extends Activity
         });*/
 
         
-        
+        nombre = (TextView) findViewById(R.id.nombre);
+        nombre.setText((CharSequence) producto.get_Nombre());
+
+        desc = (TextView) findViewById(R.id.desc);
+        desc.setText((CharSequence) producto.getDesc());
+
+       imagen = (ImageView) findViewById(R.id.imageView);
+        if (imagen != null)
+            imagen.setImageResource(producto.get_idImagen());
+
+        follow = (Button) findViewById(R.id.button4);
+
+        follow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CharSequence texto = "Has añadido "+producto.get_Nombre()+" a tu lista de seguidos.";
+                Toast toast = Toast.makeText(Scaner.this, texto, Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
 
     }
 
@@ -106,6 +146,7 @@ public class Scaner extends Activity
                             Scaner.this, User.class);
                     startActivity(mainIntent);
                     break;
+                default:break;
             }}else{
             cambio = true;
         }

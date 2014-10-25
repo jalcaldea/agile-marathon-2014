@@ -12,8 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import worten.aebd.com.worten.products.Producto;
 import worten.aebd.com.worten.products.Productos;
@@ -37,6 +39,10 @@ public class Product extends Activity
     private TextView nombre;
     private TextView desc;
     private ImageView imagen;
+    private Button juego;
+    private Button buy;
+    private Button follow;
+    private Button opinion;
 
     private boolean cambio = false;
 
@@ -53,7 +59,7 @@ public class Product extends Activity
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout),1);
+                (DrawerLayout) findViewById(R.id.drawer_layout),5);
 
         Bundle bundle = getIntent().getExtras();
         int n = bundle.getInt("producto");
@@ -86,6 +92,17 @@ public class Product extends Activity
         if (imagen != null)
             imagen.setImageResource(producto.get_idImagen());
 
+        follow = (Button) findViewById(R.id.button4);
+
+        follow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CharSequence texto = "Has añadido "+producto.get_Nombre()+" a tu lista de seguidos.";
+                Toast toast = Toast.makeText(Product.this, texto, Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
+
 
     }
 
@@ -103,6 +120,11 @@ public class Product extends Activity
         if(cambio){
             Intent mainIntent = new Intent();
             switch (number) {
+                case 1:
+                    mainIntent = new Intent().setClass(
+                            Product.this, Shop.class);
+                    startActivity(mainIntent);
+                    break;
                 case 2:
                     mainIntent = new Intent().setClass(
                             Product.this, Scaner.class);
@@ -118,6 +140,7 @@ public class Product extends Activity
                             Product.this, User.class);
                     startActivity(mainIntent);
                     break;
+                default:break;
             }}else{
             cambio = true;
         }
