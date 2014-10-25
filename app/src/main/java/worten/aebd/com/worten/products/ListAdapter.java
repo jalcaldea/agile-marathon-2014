@@ -1,4 +1,4 @@
-package worten.aebd.com.worten.adapter;
+package worten.aebd.com.worten.products;
 
 /**
  * Created by jesus on 25/10/14.
