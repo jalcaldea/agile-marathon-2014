@@ -6,13 +6,12 @@
     <string name="escanear">Worten - Escanear</string>
     <string name="juegos">Worten - Juego</string>
     <string name="usuario">Worten - Usuario</string>
-
-
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Ajustes</string>
     <string name="close_settings">Cerrar Sesión</string>
     <string name="title_activity_compra">Worten - Carro</string>
+    <string name="title_activity_ranking">Ranking</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

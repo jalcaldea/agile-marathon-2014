@@ -113,6 +113,12 @@ public class Games extends Activity
                  CharSequence texto = "Seleccionado: " + elegido.getNombre();
                 Toast toast = Toast.makeText(Games.this, texto, Toast.LENGTH_LONG);
                 toast.show();
+
+                Intent mainIntent = new Intent();
+                mainIntent = new Intent().setClass(
+                        Games.this, Ranking.class);
+                //mainIntent.putExtra("producto", elegido.getId());
+                startActivity(mainIntent);
             }
         });
         

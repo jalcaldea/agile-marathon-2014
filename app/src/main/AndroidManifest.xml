@@ -32,6 +32,11 @@
             android:label="Worten - Perfil" >
         </activity>
         <activity
+            android:name=".Ticket"
+            android:label="Worten - Ticket" >
+        </activity>
+
+        <activity
             android:name=".SplashScreenActivity"
             android:label="Worten" >
             <intent-filter>
@@ -43,6 +48,10 @@
         <activity
             android:name=".Compra"
             android:label="@string/title_activity_compra" >
+        </activity>
+        <activity
+            android:name=".Ranking"
+            android:label="@string/title_activity_ranking" >
         </activity>
     </application>
 
