@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import worten.aebd.com.worten.juegos.Juego;
 import worten.aebd.com.worten.juegos.Juegos;
@@ -105,17 +106,17 @@ public class Games extends Activity
                 Juego elegido = (Juego) pariente.getItemAtPosition(posicion);
 
                 // pariente
-
+/*
 
                 Intent mainIntent = new Intent();
                 mainIntent = new Intent().setClass(
                         Games.this, Juego.class);
                 mainIntent.putExtra("juego", elegido.getId());
                 startActivity(mainIntent);
-
-                // CharSequence texto = "Seleccionado: " + elegido.get_textoDebajo();
-                //Toast toast = Toast.makeText(Shop.this, texto, Toast.LENGTH_LONG);
-                //toast.show();
+*/
+                 CharSequence texto = "Seleccionado: " + elegido.getNombre();
+                Toast toast = Toast.makeText(Games.this, texto, Toast.LENGTH_LONG);
+                toast.show();
             }
         });
         
