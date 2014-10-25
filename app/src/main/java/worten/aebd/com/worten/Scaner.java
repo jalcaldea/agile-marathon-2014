@@ -98,6 +98,9 @@ public class Scaner extends Activity
         desc = (TextView) findViewById(R.id.desc);
         desc.setText((CharSequence) producto.getDesc());
 
+        juego = (Button) findViewById(R.id.button3);
+
+
        imagen = (ImageView) findViewById(R.id.imageView);
         if (imagen != null)
             imagen.setImageResource(producto.get_idImagen());
@@ -127,6 +130,21 @@ public class Scaner extends Activity
                 Intent mainIntent = new Intent();
                 mainIntent = new Intent().setClass(
                         Scaner.this, Shop.class);
+                startActivity(mainIntent);
+
+            }
+        });
+
+        juego.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CharSequence texto = "Juega para ganar descuentos";
+                Toast toast = Toast.makeText(Scaner.this, texto, Toast.LENGTH_LONG);
+                toast.show();
+
+                Intent mainIntent = new Intent();
+                mainIntent = new Intent().setClass(
+                        Scaner.this, Games.class);
                 startActivity(mainIntent);
 
             }
