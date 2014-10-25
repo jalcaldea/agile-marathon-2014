@@ -101,6 +101,11 @@ public class Scaner extends Activity
                             Scaner.this, Shop.class);
                     startActivity(mainIntent);
                     break;
+                case 2:
+                    mainIntent = new Intent().setClass(
+                            Scaner.this, Scaner.class);
+                    startActivity(mainIntent);
+                    break;
                 case 3:
                     mainIntent = new Intent().setClass(
                             Scaner.this, Games.class);
