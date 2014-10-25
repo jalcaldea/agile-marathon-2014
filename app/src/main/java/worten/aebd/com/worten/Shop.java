@@ -1,14 +1,13 @@
 package worten.aebd.com.worten;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,10 +15,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.AdapterView.OnItemClickListener;
+
+
+import worten.aebd.com.worten.adapter.ListAdapter;
 
 
 public class Shop extends Activity
@@ -35,7 +38,6 @@ public class Shop extends Activity
      */
     private CharSequence mTitle;
     private ListView mListView;
-    private String[] categorias = {"Imagen y sonido", "Pequeños electrodomésticos", "Informatica", "Fotografía y Revelado","Telefonía","Juegos y Consolas","Electrodomésticos"};
 
 
     @Override
@@ -52,7 +54,7 @@ public class Shop extends Activity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
-
+    /*
         mListView = (ListView) findViewById(R.id.product_label);
         mListView.setAdapter(new ArrayAdapter<String>(getActionBar().getThemedContext(),
                 android.R.layout.simple_list_item_1, categorias));
@@ -66,7 +68,52 @@ public class Shop extends Activity
                 Toast toast = Toast.makeText(Shop.this, texto, Toast.LENGTH_LONG);
                 toast.show();
             }
+        });*/
+
+        ArrayList<Productos> datos = new ArrayList<Productos>();
+
+        datos.add(new Productos(R.drawable.im_mac, "MacBook Air 13,3'' APPLE MD760B 128 GB", "Intel Core i5 / Disco Duro 128 GB / RAM 4 GB / OS X Mavericks",888,"pepe"));
+        datos.add(new Productos(R.drawable.im_hdd, "Disco Duro Portátil 1 TB WESTERN DIGITAL My Passport Ultra Metal Azul", "1 TB / USB 3.0",67.99,"pepe"));
+        datos.add(new Productos(R.drawable.im_lavadora, "Lavadora LG F1296QDP7", "",524,"pepe"));
+        datos.add(new Productos(R.drawable.im_lavadora, "TV OLED LG Smart TV 3D 55'' 55EA980V", "Televisor de última generación",2499,"pepe"));
+
+        mListView = (ListView) findViewById(R.id.product_label);
+        mListView.setAdapter(new ListAdapter(this, R.layout.entrada, datos){
+            @Override
+            public void onEntrada(Object entrada, View view) {
+                if (entrada != null) {
+                    TextView texto_superior_entrada = (TextView) view.findViewById(R.id.textView_superior);
+                    if (texto_superior_entrada != null)
+                        texto_superior_entrada.setText(((Productos) entrada).get_Nombre());
+
+                    TextView texto_inferior_entrada = (TextView) view.findViewById(R.id.textView_inferior);
+                    if (texto_inferior_entrada != null)
+                        texto_inferior_entrada.setText(((Productos) entrada).get_textoDebajo());
+
+                    ImageView imagen_entrada = (ImageView) view.findViewById(R.id.imageView_imagen);
+                    if (imagen_entrada != null)
+                        imagen_entrada.setImageResource(((Productos) entrada).get_idImagen());
+
+                    TextView texto_precio = (TextView) view.findViewById(R.id.textView_precio);
+                    if (texto_precio != null)
+                        texto_precio.setText(((Productos) entrada).getPrecio()+"€");
+
+                }
+            }
         });
+
+        mListView.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> pariente, View view, int posicion, long id) {
+                Productos elegido = (Productos) pariente.getItemAtPosition(posicion);
+
+                CharSequence texto = "Seleccionado: " + elegido.get_textoDebajo();
+                Toast toast = Toast.makeText(Shop.this, texto, Toast.LENGTH_LONG);
+                toast.show();
+            }
+        });
+        
+        
 
     }
 
